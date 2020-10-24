@@ -10,7 +10,8 @@
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
-      />
+    />
+
 </head>
 <body>
     
@@ -42,5 +43,7 @@
 
     <script src=" {{ asset('js/index.js')}} "></script>
     @stack('js')
+    @include('sweetalert::alert')
+
 </body>
 </html>

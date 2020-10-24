@@ -12,14 +12,14 @@
 */
 
 Route::get('/', function () {
-    return view('welcome');
-});
-Route::get('/home', function() {
     return view('homescreen');
 });
-Route::get('/post', function() {
-    return view('detailedPost');
+Route::get('/home', function() {
+    return view('welcome');
 });
+// Route::get('/post', function() {
+//     return view('detailedPost');
+// });
 Route::get('/post/edit', function() {
     return view('editPost');
 });
@@ -29,3 +29,12 @@ Route::get('/profile', function() {
 Route::get('/post/comment', function() {
     return view('comment');
 });
+
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
+Route::get('/post/create', 'PostController@create');
+Route::post('/post','PostController@store_comment');
+Route::get('/post', 'PostController@index_comment');
+Route::post('/','PostController@store');
+Route::get('/', 'PostController@index');
