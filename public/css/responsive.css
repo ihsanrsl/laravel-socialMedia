@@ -1,0 +1,128 @@
+:root {
+    --primary-color: #b5eb5a;
+    --darker-primary-color: #90bd44;
+    --secondary-color: #3b4753;
+    --third-color: #fff;
+    --font-color: #eee;
+    --background-color: #fff;
+}
+
+@media only screen and (min-width: 920px) {
+    .cardContainer {
+        grid-template-columns: 1fr 1fr 1fr;
+    }
+    .detailDesc {
+        -webkit-line-clamp: 9;
+    }
+    .review-container {
+        grid-template-columns: repeat(3, minmax(0, 1fr)) ;
+    }
+    .form-review {
+        padding: 2rem 20%;
+    }
+    
+}
+@media only screen and (min-width:601px) and  (max-width: 919px) {
+    .cardContainer {
+        grid-template-columns: 1fr 1fr;
+    }
+    .review-container {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+    .form-review {
+        padding: 2rem 10%;
+    }
+}
+@media only screen and (min-width: 710px) {
+    /* Navigation */
+    .nav-list.largeMode ul {
+        display: flex;
+        justify-content: space-evenly;
+        box-shadow: none;
+        top: 0%;
+        right: 0%;
+        z-index: 999;
+        transform: translateX(0);
+        height: unset;
+        font-size: .91rem;
+        border: 0;
+        padding: 0 0 0 .8em;
+        background-color: transparent;
+    }
+    .fa-bars{
+        display: none;
+    }
+    .menu {
+        display: none;
+    }
+    .nav-list .fas {
+        display: none;
+    }
+    /* Main content */
+    .main-content {
+        grid-template-columns: 3fr 1fr;
+    }
+    /* Side Widget */
+    .sideWidget {
+        box-sizing: border-box;
+        display: unset;
+        width: 100%;
+        padding: .91em;
+        text-align: center;
+        box-shadow: -4px 4px 8px rgba(59, 71, 83, .2);
+        background-color: var(--primary-color);
+        border-radius: 10px;
+        height: 250px;
+    }
+    .sideWidget input {
+        width: 90%;
+        height: 2em;
+    }
+    .sideWidget form {
+        padding: 0 0 .5em 0;
+        border-bottom: 1px solid var(--secondary-color);
+    }
+    .sideWidget .fas {
+        font-size: 14px;
+    }
+    .sideWidget button {
+        background-color: var(--third-color);
+        border: none;
+        margin: 0 0 0 -1em;
+        border-radius: 0 5px 5px 0;
+        height: 2.1em;
+        cursor: pointer;
+    }
+}
+@media only screen and (min-width: 601px) {
+    /* Navigation */
+    .nav  {
+        justify-content: space-between;
+        background-color: var(--secondary-color);
+    }  
+    .nav-list a {
+        box-sizing: border-box;
+        padding: 15px;
+        border: 0;
+    }
+    .nav-list.largeMode a:hover {
+        border: 0px;
+        color: var(--third-color);
+        font-weight: bold;
+    }
+    .nav-list ul li {
+        margin-right: 10px;
+        margin-bottom: 0;
+        align-items: center;
+    }
+    .nav-list-logout {
+        right: 5%;
+        top: 0;
+    }
+    .follow-button {
+        position: absolute;
+        right: 5%;
+        top: 5%;
+    }
+    
+}
