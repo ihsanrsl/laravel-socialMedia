@@ -2,6 +2,7 @@
     --primary-color: #b5eb5a;
     --darker-primary-color: #90bd44;
     --secondary-color: #3b4753;
+    --darker-secondary-color: #262e36;
     --third-color: #fff;
     --font-color: #eee;
     --background-color: #fff;
@@ -25,7 +26,6 @@ body {
 a {
     text-decoration: none;
 }
-
 /* Navigation */
 .menu {
     font-size: 1.5rem;
@@ -33,8 +33,10 @@ a {
     border-radius: 5px;
     border: none;
     background-color: transparent;
-    color: var(--secondary-color);
     text-align: center;
+}
+.menu:hover {
+    background-color: unset;
 }
 .nav {
     width: 100%;
@@ -50,6 +52,7 @@ a {
     z-index: 100;
     box-shadow: 0 4px 6px rgba(0, 0, 0, .2);
     box-sizing: border-box;
+    padding: 0;
 }
 .nav .toHome {
     position: absolute;
@@ -78,7 +81,7 @@ a {
     font-size: 24px;
     line-height: 50px;
 }
-.nav .home .fa-bars {
+.nav .fa-bars {
     color: var(--primary-color);
 }
 .nav a {
@@ -130,7 +133,41 @@ a {
 .nav-list a:hover {
     transition: .3s all ease;
 }
+a.nav-link {
+    margin: .4em 1em;
+    color: var(--primary-color);
+    transition: all .5 ease;
+}
+a.nav-link:hover {
+    color: var(--third-color);
+}
+.navbar-nav {
+    position: absolute;
+    right: 0;
+    background-color: var(--secondary-color);
+    width: 35%;
+    box-shadow: -2px 2px 4px rgba(0, 0, 0, .3);
+    border-left: 1px solid var(--primary-color);
+}
+.navbar-largeMode {
+    display: none;
+    list-style: none;
+    margin: 0;
+}
 
+/* Register */
+.card-header, .btn {
+    background-color: var(--secondary-color);
+    color: var(--primary-color);
+}
+.card-body {
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+}
+.btn:hover {
+    background-color: var(--darker-secondary-color);
+    color: var(--primary-color)
+}
 /* Main Content */
 .main-content {
     box-sizing: border-box;

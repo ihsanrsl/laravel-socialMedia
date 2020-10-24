@@ -3,7 +3,7 @@
         <a aria-label='Brand Logo' href="/home">talkey.</a>
         <button aria-label="dropdown menu" class="menu" type="button">
         <span class="fas fa-bars"></span>
-    </button>
+        </button>
     </div>
 
     <div class="toHome">

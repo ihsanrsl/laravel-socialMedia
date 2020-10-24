@@ -6,9 +6,15 @@
         <div class="author-profile">
             <div class="profile"></div>
             <div class="author-name">
-                <h2>Author Name</h2>
-                <p>@Username</p>
-                <a href="" class="follow-button">Follow</a>
+                <h2> {{$profile->name}} </h2>
+                <p>  @'{{$store->username}} </p>
+                @if (Auth::user()->id == $store->id) 
+                    <a href="/profile/{{$store->username}}/setting" class="follow-button">Setting</a>
+                @else
+                   <a href="" class="follow-button">Follow</a>
+                @endif
+                
+                
             </div>
         </div>
 
