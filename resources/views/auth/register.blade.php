@@ -12,21 +12,12 @@
                         @csrf
 
                         <div class="form-group row">
-<<<<<<< HEAD
-                            <label for="name" class="col-md-4 col-form-label text-md-right">{{ __('Name') }}</label>
-
-                            <div class="col-md-6">
-                                <input id="name" type="text" class="form-control @error('name') is-invalid @enderror" name="name" value="{{ old('name') }}" required autocomplete="name" autofocus>
-
-                                @error('name')
-=======
                             <label for="username" class="col-md-4 col-form-label text-md-right">{{ __('Userame') }}</label>
 
                             <div class="col-md-6">
                                 <input id="username" type="text" class="form-control @error('username') is-invalid @enderror" name="username" value="{{ old('username') }}" required autocomplete="username" autofocus>
 
                                 @error('username')
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
                                     </span>
@@ -72,11 +63,7 @@
 
                         <div class="form-group row mb-0">
                             <div class="col-md-6 offset-md-4">
-<<<<<<< HEAD
-                                <button type="submit" class="btn btn-primary">
-=======
                                 <button type="submit" class="btn">
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
                                     {{ __('Register') }}
                                 </button>
                             </div>

@@ -26,7 +26,7 @@
             <div class="profile-detail">
                 <div class="profile-total-post">
                     <p>Post</p>
-                    <p>9</p>
+                    <p>{{ $post->count() }}</p>
                 </div>
                 <div class="profile-total-followings">
                     <p>Followings</p>
@@ -42,23 +42,19 @@
 
     <div class="detail-comment">
         <h2>Post</h2>
-        <div class="comment-post">
-            <a href="/post" class="post-link"></a>
-            <div class="profile"></div>
-            <div class="comment-content">
-                <a href="/profile" class="author-username">@username</a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magni ad fugiat a rerum sunt suscipit, aliquam laudantium voluptate vitae consectetur corrupti aperiam exercitationem ullam pariatur nostrum non saepe mollitia.</p>
-            </div>
-        </div>
 
-        <div class="comment-post">
-            <a href="/post" class="post-link"></a>
-            <div class="profile"></div>
-            <div class="comment-content">
-                <a href="/profile" class="author-username">@username</a>
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magni ad fugiat a rerum sunt suscipit, aliquam laudantium voluptate vitae consectetur corrupti aperiam exercitationem ullam pariatur nostrum non saepe mollitia.</p>
-            </div>
-        </div>
+        @forelse ($post as $key => $posted)
+                <div class="comment-post">
+                    <a href="/post/{{$posted->id}}" class="post-link"></a>
+                    <div class="profile"></div>
+                    <div class="comment-content">
+                        <a href="/profile/{{$posted->author->username}}" class="author-username">{{'@'.$posted->author->username}}</a>
+                        <p>{{$posted->isi}}</p>
+                    </div>
+                </div>
+                @empty
+                <p>No comment yet.</p>
+            @endforelse
         
     </div>
 </div>

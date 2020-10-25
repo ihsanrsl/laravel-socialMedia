@@ -243,6 +243,15 @@ a.nav-link:hover {
     color: var(--secondary-color);
     cursor: pointer;
 }
+a.button-post {
+    padding: .4em 1.1em;
+    float: right;
+    border: none;
+    border-radius: 5px;
+    background-color: var(--primary-color);
+    color: var(--secondary-color);
+    cursor: pointer;
+}
 
 .post {
     color: var(--secondary-color);
@@ -309,10 +318,14 @@ a.nav-link:hover {
 .delete-button:hover {
     color: #f76652;
 }
+.card-img-top.detail {
+    transform: translate(25%);
+    margin-bottom: 3em;
+}
 .post-reaction {
     position: absolute;
     right: 0;
-    bottom: -15%;
+    bottom: 0%;
     display: flex;
     column-gap: 1em;
     font-size: .8rem;
@@ -450,9 +463,13 @@ a.settings {
     text-align: center;
     border-radius: 5px;
 }
-a.yes {
+.yes {
     background-color: var(--primary-color);
     color: var(--secondary-color);
+    border: none;
+    padding: .6em 2em;
+    border-radius: 5px;
+    cursor: pointer;
 }
 .cancel {
     background-color: var(--danger-color);

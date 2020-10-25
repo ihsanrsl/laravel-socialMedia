@@ -4,11 +4,7 @@
         "Read more about it at https://getcomposer.org/doc/01-basic-usage.md#installing-dependencies",
         "This file is @generated automatically"
     ],
-<<<<<<< HEAD
-    "content-hash": "b96f1669dde7e883f1102fed7836a241",
-=======
     "content-hash": "9863e345f42316163cfe451d6681b567",
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
     "packages": [
         {
             "name": "dnoegel/php-xdg-base-dir",
@@ -4404,13 +4400,10 @@
                 "laravel",
                 "ui"
             ],
-<<<<<<< HEAD
             "support": {
                 "issues": "https://github.com/laravel/ui/issues",
                 "source": "https://github.com/laravel/ui/tree/v1.2.0"
             },
-=======
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
             "time": "2020-02-13T21:12:28+00:00"
         },
         {

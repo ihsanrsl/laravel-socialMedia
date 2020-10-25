@@ -8,6 +8,7 @@ use Illuminate\Routing\Controller as BaseController;
 use App\Profile;
 use App\User;
 use App\Follow;
+use App\Post;
 use Auth;
 
 class profileController extends BaseController
@@ -28,6 +29,7 @@ class profileController extends BaseController
         
         return view('profileSet', compact('store', 'user'));
     }
+
     public function author($username, Request $request){
 
         $request->validate([
@@ -49,7 +51,9 @@ class profileController extends BaseController
         $following = Follow::where('user_id', $store->id);
         $checkFollowing = Follow::where('user_id', Auth::user()->id)->where('user_id_2', $store->id)->first();
         $follower = Follow::where('user_id_2', $store->id);
-        return view('profile', compact('store', 'profile','following', 'follower', 'checkFollowing'));
+        $post = Post::where('user_id', $store->id)->get();
+
+        return view('profile', compact('post','store', 'profile','following', 'follower', 'checkFollowing'));
     }
 
     public function follow($username, $follow) {

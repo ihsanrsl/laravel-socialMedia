@@ -3,9 +3,9 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
 use Auth;
 use App\Post;
+use App\Comment;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 
@@ -22,14 +22,10 @@ class PostController extends Controller
 	}
 
 	public function store(Request $request){
-	// dd($request->all());
 		$request->validate([
 			'post-input' => 'required',
 			'images' => 'image|mimes:jpeg,png,svg|max:2048'
 		]);
-
-		
-
 
 		// menyimpan data dengan metode mass assignment. cek di file post.php juga protected $guarded
 		if ($request->has('images')) {
@@ -41,7 +37,6 @@ class PostController extends Controller
 				"images" => 'public/uploads/posts/'.$new_images,
 				"slug" => Str::slug($request["post-input"]),
 				"user_id" => Auth::id()
-				// "profil_id" => Auth::user()->profil->id
 			]);
 			$images->move('public/uploads/posts/', $new_images);
 		}
@@ -50,22 +45,93 @@ class PostController extends Controller
 				"isi" => $request["post-input"],
 				"slug" => Str::slug($request["post-input"]),
 				"user_id" => Auth::id()
-				// "profil_id" => Auth::user()->profil->id
 			]);
 		}
-		
 
 		//menyimpan nama user yang buat post
 		$user = Auth::user();
 		$user->posts()->save($post);
 		
-		Alert::success('Success', 'Postingan Berhasil Disimpan');
+		Alert::success('Success', 'Post successfully create.');
 		return redirect('/');
 	}
 
+	public function detailPost($id) {
+		$posts = Post::find($id);
+		$comment = Comment::where('post_id', $id)->get();
+		$checkLike = Like::where('user_id', Auth::user()->id)->where('post_id', $posts)->first();
+
+		return view('detailedPost', compact('posts', 'comment', 'checkLike'));
+	}
+	public function edit($id) {
+		$posts = Post::find($id);
+
+        return view('editPost', compact('posts'));
+	}
+
+	public function update($id, Request $request) {
+		$request->validate([
+			'edit_post' => 'required',
+		]);
+
+		$update = Post::where('id', $id)->update([
+			'isi' => $request['edit_post']
+		]);
+
+		return redirect('/post/'.$id);
+	}
+
+	public function deletePost($id) {
+		Post::destroy($id);
+
+		return redirect('/');
+	}
+
+	public function comment($id) {
+		$post = Post::find($id);
+
+		return view('commentPost',compact('post'));
+	}
+
+	public function comments($id) {
+		$posts = Post::find($id);
+
+		return view('homescreen');
+	}
+	public function makeComment($id, Request $request) {
+		$request->validate([
+			'comment-post' => 'required'
+		]);
+
+		$post = Comment::create([
+			'user_id' => Auth::user()->id,
+			'post_id' => $id,
+			'isi' => $request['comment-post'],
+		]);
+
+		return redirect('/post/'.$id);
+	}
+
+	public function like($id, $likes) {
+        $store = Auth::user()->id;
+
+        if($likes == 'unlike') {
+            $unliking = Like::where('user_id', Auth::user()->id)->where('post_id', $id)->first()->delete();
+           
+        } elseif ($likes == 'like') {
+            $liking = Like::updateOrCreate([
+                'user_id' => $store,
+                'post_id' => $id,
+            ]);
+        }
+        
+
+        return redirect('/post/'.$id);
+
+    }
+
 	public function index(){
-		//$pertanyaan = DB::table('pertanyaan')->get(); //select*from pertanyaan;
-		// dd($pertanyaan);
+
 		$post = Post::all(); // menampilkan semua data dengan metode model ORM
 
 		//menampilan data yang dibuat oleh user itu aja
@@ -78,8 +144,7 @@ class PostController extends Controller
 	}
 
 	public function index_comment(){
-		//$pertanyaan = DB::table('pertanyaan')->get(); //select*from pertanyaan;
-		// dd($pertanyaan);
+
 		$post = Post::all(); // menampilkan semua data dengan metode model ORM
 
 		//menampilan data yang dibuat oleh user itu aja

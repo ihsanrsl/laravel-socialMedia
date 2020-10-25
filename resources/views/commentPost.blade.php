@@ -5,10 +5,12 @@
     <h2>Comment</h2>
     <div class="posting">
         <div class="profile"></div>
-        <form action="">
+        <form method="POST" action="/post/{{$post->id}}/comments">
+            @csrf
+            
             <textarea name="comment-post" id="comment-post" cols="" rows="3" class="post-input" placeholder="Tell me something"></textarea>
             <a href="/post" class="cancel cancel-button">Cancel</a>
-            <button type="submit" class="button-post">Edit</button>
+            <button class="button-post" type="submit">Comment</button>
         </form>
     </div>
 </section>

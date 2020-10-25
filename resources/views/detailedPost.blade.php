@@ -7,45 +7,66 @@
             <div class="author-profile">
                 <div class="profile"></div>
                 <div class="author-name">
-                    <h2>Author Name</h2>
-                    <a href="/profile">@Username</a>
+                    <h2> {{$posts->author->profile->name}} </h2>
+                    <a href="/profile/{{$posts->author->username}}">{{'@'.$posts->author->username}}</a>
                 </div>
                 <a class="delete-button" href="#"><i class="fas fa-trash"></i></a>
             </div>
     
             <div class="detailed-post">
-                <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Vero, inventore? Nihil fuga deleniti provident temporibus optio blanditiis earum esse odit quo quidem, praesentium, ipsam ipsa necessitatibus dolores dolor! Nostrum dolore inventore quod alias commodi autem tempora quidem eligendi molestiae culpa?</p>
+                <p>{{$posts->isi}}</p>
+                @if($posts->images)
+                <img class="card-img-top detail" src="{{asset($posts->images)}}" class="img-fluid" style="max-width:600px">
+                @endif
                 
                 <div class="post-reaction">
-                    <p><a href="/post/edit">Edit</a></p>
-                    <p><a href="/post/comment">10 Comment</a></p>
-                    <p><a href="#" class="like">210 Like</a></p>
+                    <p><a href="/post/{{$posts->id}}/edit">Edit</a></p>
+                    <p><a href="/post/{{$posts->id}}/comments">{{$comment->count()}} Comment</a></p>
+                    @if ($checkLike)
+                         <p><a href="/post/{{$posts->id}}/unlike" class="like">210 Unlike</a></p>
+                    @else 
+                        <p><a href="/post/{{$posts->id}}/like" class="like">210 Like</a></p>
+                    @endif
+                    <p><a href="/" class="like">210 Like</a></p>
                     <p class="post-date">20 Oktober 2020</p>
                 </div>
             </div>
         </div>
+
+        <div class="popup">
+            <div class="bg-modal"></div>
+            <div class="modal">
+                <p>Are you sure want to delete this post?</p>
+                <form method="POST" action="/post/{{$posts->id}} " class="choice">
+                    @csrf
+                    @method('DELETE')
+
+                    <button type="submit" value="delete" class="yes">Yes</button>
+                    <a href="" class="cancel">Cancel</a>
+                </form>
+            </div>
+        </div>
         
+
+        
+
         <div class="detail-comment">
             <h2>Comment</h2>
+
+            @forelse ($comment as $key => $commented)
                 <div class="comment-post">
                     <a href="/post" class="post-link"></a>
                     <div class="profile"></div>
                     <div class="comment-content">
-                        <a href="/profile" class="author-username">@username</a>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magni ad fugiat a rerum sunt suscipit, aliquam laudantium voluptate vitae consectetur corrupti aperiam exercitationem ullam pariatur nostrum non saepe mollitia.</p>
+                        <a href="/profile/{{$commented->user->username}}" class="author-username">{{'@'.$commented->user->username}}</a>
+                        <p>{{ $commented->isi }}</p>
                         <a href="">Like</a>
                     </div>
                 </div>
-
-                <div class="comment-post">
-                    <a href="/post" class="post-link"></a>
-                    <div class="profile"></div>
-                    <div class="comment-content">
-                        <a href="/profile" class="author-username">@username</a>
-                        <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magni ad fugiat a rerum sunt suscipit, aliquam laudantium voluptate vitae consectetur corrupti aperiam exercitationem ullam pariatur nostrum non saepe mollitia.</p>
-                    </div>
-                </div>
-
+                @empty
+                <p>No comment yet.</p>
+            @endforelse
+                
         </div>
     </div>
 @endsection

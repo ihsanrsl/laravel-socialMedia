@@ -5,10 +5,14 @@
     <h2>Edit Post</h2>
     <div class="posting editing">
         <div class="profile"></div>
-        <form action="">
-            <textarea name="edit-post" id="edit-post" cols="" rows="3" class="post-input" placeholder="Tell me something"></textarea>
-            <a href="/post" class="cancel cancel-button">Cancel</a>
-            <button type="submit" class="button-post">Edit</button>            
+        <form method="POST" action="/post/{{$posts->id}}">
+            @csrf
+            @method('PUT')
+
+            <textarea name="edit_post" id="edit_post" cols="" rows="3" class="post-input" placeholder="Tell me something"> {{$posts->isi}} </textarea>
+            <a href="/post/{{$posts->id}}" class="cancel cancel-button">Cancel</a>
+            <button class="button-post" type="submit">Edit</button>
+            {{-- <a href="/post" class="button-post">Edit</a>        --}}
         </form>
     </div>
 </section>

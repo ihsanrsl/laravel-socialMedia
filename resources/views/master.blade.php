@@ -12,11 +12,6 @@
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
     />
-<<<<<<< HEAD
-
-=======
-    
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
 </head>
 <body>
     
@@ -34,17 +29,6 @@
             
         </div>
 
-    </div>
-
-    <div class="popup">
-        <div class="bg-modal"></div>
-        <div class="modal">
-            <p>Are you sure want to delete this post?</p>
-            <div class="choice">
-                <a href="" class='yes'>Yes</a>
-                <a href="" class="cancel">Cancel</a>
-            </div>
-    </div>
     </div>
 
     <script src=" {{ asset('js/index.js')}} "></script>

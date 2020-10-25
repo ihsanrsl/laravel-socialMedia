@@ -11,46 +11,35 @@
 |
 */
 
-<<<<<<< HEAD
-Route::get('/', function () {
-=======
-use App\Http\Controllers\profileController;
-
 Route::get('/welcome', function () {
     return view('welcome');
-});
-Route::get('/', function() {
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
-    return view('homescreen');
 });
 Route::get('/home', function() {
     return view('welcome');
 });
-<<<<<<< HEAD
-// Route::get('/post', function() {
-//     return view('detailedPost');
-// });
-=======
 Route::get('/profile/{username}/setting', 'profileController@set');
 Route::put('/profile/{username}', 'profileController@author');
 Route::get('/profile/{username}/{follow}', 'profileController@follow');
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
-Route::get('/post/edit', function() {
-    return view('editPost');
-});
+
+Route::get('/post/{id}/edit', 'PostController@edit');
+Route::put('/post/{id}', 'PostController@update');
+Route::get('/post/{id}', 'PostController@detailPost');
+
 Route::get('/profile/{username}', 'profileController@profile');
-Route::get('/post/comment', function() {
-    return view('comment');
-});
+Route::delete('/post/{id}', 'PostController@deletePost');
+
+Route::get('/post/{id}/comments', 'PostController@comment');
+Route::post('/post/{id}/comments', 'PostController@makeComment');
+
+Route::put('/post/{id}/{likes}', 'PostController@like');
+
 
 Auth::routes();
 
 Route::get('/home', 'HomeController@index')->name('home');
-<<<<<<< HEAD
+
 Route::get('/post/create', 'PostController@create');
 Route::post('/post','PostController@store_comment');
-Route::get('/post', 'PostController@index_comment');
+
 Route::post('/','PostController@store');
 Route::get('/', 'PostController@index');
-=======
->>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
