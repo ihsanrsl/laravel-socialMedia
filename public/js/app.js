@@ -49886,8 +49886,13 @@ __webpack_require__.r(__webpack_exports__);
 /*! no static exports found */
 /***/ (function(module, exports, __webpack_require__) {
 
+<<<<<<< HEAD
 __webpack_require__(/*! C:\xampp\htdocs\final\sanbercode-laravel-final-project\resources\js\app.js */"./resources/js/app.js");
 module.exports = __webpack_require__(/*! C:\xampp\htdocs\final\sanbercode-laravel-final-project\resources\sass\app.scss */"./resources/sass/app.scss");
+=======
+__webpack_require__(/*! D:\Apps\xampp\htdocs\Sanbercode\laravel\FinalProject\resources\js\app.js */"./resources/js/app.js");
+module.exports = __webpack_require__(/*! D:\Apps\xampp\htdocs\Sanbercode\laravel\FinalProject\resources\sass\app.scss */"./resources/sass/app.scss");
+>>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
 
 
 /***/ })

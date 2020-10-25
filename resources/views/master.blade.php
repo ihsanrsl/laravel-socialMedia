@@ -5,13 +5,18 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
     <title>Home App</title>
+    @stack('css')
     <link rel="stylesheet" href=" {{ asset('css/main.css')}} ">
     <link rel="stylesheet" href=" {{ asset('css/responsive.css')}} ">
     <link
         rel="stylesheet"
         href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.14.0/css/all.css"
     />
+<<<<<<< HEAD
 
+=======
+    
+>>>>>>> 55f6092374795ec31a6ebdfb5fe64925040f9bbb
 </head>
 <body>
     
@@ -20,12 +25,13 @@
     <div class="main-content">
 
         @yield('content')
-
+        
         <div class="sideWidget">
             <form action="">
                 <input type="text" placeholder="Search" class="search-input">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
+            
         </div>
 
     </div>

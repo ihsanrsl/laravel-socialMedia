@@ -28,21 +28,32 @@ class PostController extends Controller
 			'images' => 'image|mimes:jpeg,png,svg|max:2048'
 		]);
 
-		$images = $request->images;
-		$new_images = time().$images->getClientOriginalName();
+		
 
 
 		// menyimpan data dengan metode mass assignment. cek di file post.php juga protected $guarded
+		if ($request->has('images')) {
+			$images = $request->images;
+			$new_images = time().$images->getClientOriginalName();
 
-		$post = Post::create([
-			"isi" => $request["post-input"],
-			"images" => 'public/uploads/posts/'.$new_images,
-			"slug" => Str::slug($request["post-input"]),
-			// "profil_id" => Auth::user()->profil->id
-			"user_id" => Auth::id()
-		]);
-
-		$images->move('public/uploads/posts/', $new_images);
+			$post = Post::create([
+				"isi" => $request["post-input"],
+				"images" => 'public/uploads/posts/'.$new_images,
+				"slug" => Str::slug($request["post-input"]),
+				"user_id" => Auth::id()
+				// "profil_id" => Auth::user()->profil->id
+			]);
+			$images->move('public/uploads/posts/', $new_images);
+		}
+		else{
+			$post = Post::create([
+				"isi" => $request["post-input"],
+				"slug" => Str::slug($request["post-input"]),
+				"user_id" => Auth::id()
+				// "profil_id" => Auth::user()->profil->id
+			]);
+		}
+		
 
 		//menyimpan nama user yang buat post
 		$user = Auth::user();
