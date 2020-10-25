@@ -31,7 +31,7 @@ Route::delete('/post/{id}', 'PostController@deletePost');
 Route::get('/post/{id}/comments', 'PostController@comment');
 Route::post('/post/{id}/comments', 'PostController@makeComment');
 
-Route::put('/post/{id}/{likes}', 'PostController@like');
+Route::get('/post/{id}/{likes}', 'PostController@like');
 
 
 Auth::routes();

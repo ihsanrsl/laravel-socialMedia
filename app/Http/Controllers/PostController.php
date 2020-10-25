@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 use Auth;
 use App\Post;
 use App\Comment;
+use App\Like;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
 
@@ -59,9 +60,10 @@ class PostController extends Controller
 	public function detailPost($id) {
 		$posts = Post::find($id);
 		$comment = Comment::where('post_id', $id)->get();
-		$checkLike = Like::where('user_id', Auth::user()->id)->where('post_id', $posts)->first();
+		$checkLike = Like::where('user_id', Auth::user()->id)->where('post_id', $id)->first();
+		$likes = Like::where('post_id', $id);
 
-		return view('detailedPost', compact('posts', 'comment', 'checkLike'));
+		return view('detailedPost', compact('posts', 'comment', 'checkLike', 'likes'));
 	}
 	public function edit($id) {
 		$posts = Post::find($id);

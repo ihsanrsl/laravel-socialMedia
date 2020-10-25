@@ -23,11 +23,10 @@
                     <p><a href="/post/{{$posts->id}}/edit">Edit</a></p>
                     <p><a href="/post/{{$posts->id}}/comments">{{$comment->count()}} Comment</a></p>
                     @if ($checkLike)
-                         <p><a href="/post/{{$posts->id}}/unlike" class="like">210 Unlike</a></p>
+                         <p><a href="/post/{{$posts->id}}/unlike" class="like">{{$likes->count()}} Unlike</a></p>
                     @else 
-                        <p><a href="/post/{{$posts->id}}/like" class="like">210 Like</a></p>
+                        <p><a href="/post/{{$posts->id}}/like" class="like">{{$likes->count()}} Like</a></p>
                     @endif
-                    <p><a href="/" class="like">210 Like</a></p>
                     <p class="post-date">20 Oktober 2020</p>
                 </div>
             </div>

@@ -7,7 +7,7 @@ use App\User;
 
 class Like extends Model
 {
-    protected $table = 'like';
+    protected $table = 'like_post_';
     public $timestamps = true;
 
     protected $fillable = ['post_id', 'user_id'];
