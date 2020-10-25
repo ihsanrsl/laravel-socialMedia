@@ -21,12 +21,13 @@
     <div class="main-content">
 
         @yield('content')
-
+        
         <div class="sideWidget">
             <form action="">
                 <input type="text" placeholder="Search" class="search-input">
                 <button type="submit"><i class="fas fa-search"></i></button>
             </form>
+            
         </div>
 
     </div>

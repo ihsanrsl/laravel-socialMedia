@@ -25,7 +25,7 @@ class HomeController extends Controller
      */
     public function index()
     {
-        $user = Profile::create([
+        $user = Profile::updateOrCreate([
             'user_id' => Auth::user()->id
         ]);
 

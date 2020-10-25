@@ -7,6 +7,8 @@ const choiceYes = document.querySelector('.yes');
 const choiceCancel = document.querySelector('.cancel');
 const choiceBgModal = document.querySelector('.bg-modal');
 
+const like = document.querySelector('.like');
+
 Drawer = () => {
     menu.addEventListener('click',(event) => {
         event.stopPropagation();
@@ -16,6 +18,16 @@ Drawer = () => {
     mainContent.addEventListener('click', (event) => {
         event.stopPropagation();
         menuList.classList.remove('active');
+    });
+}
+Like = () => {
+    like.addEventListener('click', (event) => {
+        event.preventDefault();
+        if(like.innerHTML = 'Like') {
+            like.innerHTML = 'Dislike';
+        } else {
+            like.innerHTML = 'Like';
+        };
     });
 }
 

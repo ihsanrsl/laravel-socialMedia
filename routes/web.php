@@ -24,6 +24,7 @@ Route::get('/post', function() {
 });
 Route::get('/profile/{username}/setting', 'profileController@set');
 Route::put('/profile/{username}', 'profileController@author');
+Route::get('/profile/{username}/{follow}', 'profileController@follow');
 Route::get('/post/edit', function() {
     return view('editPost');
 });

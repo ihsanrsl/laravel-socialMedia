@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master', ['Username' => Auth::user()->username])
 
 @section('content')
 <div class="all-posts">
@@ -6,7 +6,6 @@
         <div class="profile"></div>
         <form action="">
             <textarea name="post-input" id="post-input" cols="" rows="3" class="post-input" placeholder="Tell me something"></textarea>
-            {{-- <input type="text" placeholder="Tell me something" class='post-input'> --}}
             <button type="submit" class="button-post">Post</button>
         </form>
         

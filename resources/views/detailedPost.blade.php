@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master', ['Username' => Auth::user()->username])
 
 @section('content')
     <div class="detail-section">
@@ -19,7 +19,7 @@
                 <div class="post-reaction">
                     <p><a href="/post/edit">Edit</a></p>
                     <p><a href="/post/comment">10 Comment</a></p>
-                    <p><a href="">210 Like</a></p>
+                    <p><a href="#" class="like">210 Like</a></p>
                     <p class="post-date">20 Oktober 2020</p>
                 </div>
             </div>
@@ -33,6 +33,7 @@
                     <div class="comment-content">
                         <a href="/profile" class="author-username">@username</a>
                         <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Explicabo magni ad fugiat a rerum sunt suscipit, aliquam laudantium voluptate vitae consectetur corrupti aperiam exercitationem ullam pariatur nostrum non saepe mollitia.</p>
+                        <a href="">Like</a>
                     </div>
                 </div>
 

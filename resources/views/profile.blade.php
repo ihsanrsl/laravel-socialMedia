@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master', ['Username'=> Auth::user()->username])
 
 @section('content')
 <div class="detail-section">
@@ -7,11 +7,14 @@
             <div class="profile"></div>
             <div class="author-name">
                 <h2> {{$profile->name}} </h2>
-                <p>  @'{{$store->username}} </p>
+                <p>  {{'@'.$store->username}} </p>
+                
                 @if (Auth::user()->id == $store->id) 
-                    <a href="/profile/{{$store->username}}/setting" class="follow-button">Setting</a>
-                @else
-                   <a href="" class="follow-button">Follow</a>
+                    <a href="/profile/{{$store->username}}/setting" class="follow-button settings"><i class="fas fa-cog"></i></a>
+                @elseif ($checkFollowing)
+                   <a href="/profile/{{$store->username}}/unfollowed" class="follow-button">Unfollow</a>
+                @else 
+                    <a href="/profile/{{$store->username}}/followed" class="follow-button">Follow</a> 
                 @endif
                 
                 
@@ -19,7 +22,7 @@
         </div>
 
         <div class="profile-about">
-            <p>Biography, Lorem ipsum dolor sit amet consectetur adipisicing elit. Nostrum, vel.</p>
+            <p class="bio"> {{$profile->biography }} </p>
             <div class="profile-detail">
                 <div class="profile-total-post">
                     <p>Post</p>
@@ -27,11 +30,11 @@
                 </div>
                 <div class="profile-total-followings">
                     <p>Followings</p>
-                    <p>274</p>
+                    <p> {{ $following->count() }} </p>
                 </div>
                 <div class="profile-totla-followers">
                     <p>Followers</p>
-                    <p>411</p>
+                    <p> {{ $follower->count() }} </p>
                 </div>
             </div>
         </div>

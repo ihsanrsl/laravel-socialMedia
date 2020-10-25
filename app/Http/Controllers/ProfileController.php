@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Routing\Controller as BaseController;
 use App\Profile;
 use App\User;
+use App\Follow;
 use Auth;
 
 class profileController extends BaseController
@@ -31,12 +32,13 @@ class profileController extends BaseController
 
         $request->validate([
             'display_name' => ['required','string', 'max:100', 'alpha'],
+            'biography' => ['max: 255']
         ]);
         
         $user = User::where('username', $username)->first();
         $store = Profile::where('user_id', $user->id)->update([
             'name' => $request['display_name'],
-            'biography' => $request['biography'],
+            'biography' => $request['Biography'],
         ]);
         return redirect('/profile/'.$username);
     }
@@ -44,6 +46,28 @@ class profileController extends BaseController
     public function profile($username) {
         $store = User::where('username', $username)->first();
         $profile = Profile::where('user_id', $store->id)->first();
-        return view('profile', compact('store', 'profile'));
+        $following = Follow::where('user_id', $store->id);
+        $checkFollowing = Follow::where('user_id', Auth::user()->id)->where('user_id_2', $store->id)->first();
+        $follower = Follow::where('user_id_2', $store->id);
+        return view('profile', compact('store', 'profile','following', 'follower', 'checkFollowing'));
+    }
+
+    public function follow($username, $follow) {
+        $store = Auth::user()->id;
+        $target = User::where('username', $username)->first();
+
+        if($follow == 'unfollowed') {
+            $unfollow = Follow::where('user_id', Auth::user()->id)->where('user_id_2', $target->id)->first()->delete();
+           
+        } elseif ($follow == 'followed') {
+            $following = Follow::updateOrCreate([
+                'user_id' => $store,
+                'user_id_2' => $target->id,
+            ]);
+        }
+        
+
+        return redirect('/profile/'.$username);
+
     }
 }

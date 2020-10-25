@@ -1,4 +1,4 @@
-@extends('master')
+@extends('master', ['Username' => Auth::user()->username])
 
 @section('content')
 <div class="container">

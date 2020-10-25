@@ -58,6 +58,9 @@
     .nav-list .fas {
         display: none;
     }
+    .toHome {
+        display: unset;
+    }
     .navbar-largeMode {
         display: flex;
     }

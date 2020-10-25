@@ -54,7 +54,7 @@ a {
     box-sizing: border-box;
     padding: 0;
 }
-.nav .toHome {
+.toHome {
     position: absolute;
     left: 50%;
     transform: translateX(-50%);
@@ -68,7 +68,7 @@ a {
     z-index: 999;
     transition: .5s all ease;
 }
-.nav .toHome a:hover {
+.toHome a:hover {
     color: var(--third-color);
 }
 .nav .home {
@@ -90,7 +90,7 @@ a {
     color: var(--primary-color);
     text-decoration: none;
 }
-.nav .toHome a {
+.toHome a {
     color: var(--secondary-color);
     font-size: 2em;
 }
@@ -290,6 +290,9 @@ a.nav-link:hover {
     color: inherit;
     margin: 0;
 }
+.author-name a{
+    color: inherit;
+}
 .detailed-post {
     box-sizing: border-box;
     padding: .5em;
@@ -359,6 +362,9 @@ button:hover {
     border-radius: 10px;
     color: var(--primary-color);
 }
+.profile-about .bio {
+    margin: 1.5em;
+}
 .profile-detail {
     display: flex;
     justify-content: space-evenly;
@@ -367,7 +373,7 @@ button:hover {
 a.follow-button {
     cursor: pointer;
     display: inline-block;
-    padding: .4em 1.7em;
+    padding: .7em 1.7em;
     margin-top: .5em;
     border-radius: 6px;
     border: none;
@@ -378,6 +384,17 @@ a.follow-button {
 }
 a.follow-button:hover {
     background-color: var(--darker-primary-color);
+}
+a.settings {
+    background-color: var(--primary-color);
+    box-shadow: unset;
+    font-size: 1.4rem;
+    padding: .4em;
+    border-radius: 50%;
+    width: 25px;
+    height: 25px;
+    text-align: center;
+    line-height: 25px;
 }
 .cancel-button {
     padding: .4em 1.1em;
