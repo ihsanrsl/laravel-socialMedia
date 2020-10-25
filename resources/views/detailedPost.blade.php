@@ -10,7 +10,9 @@
                     <h2> {{$posts->author->profile->name}} </h2>
                     <a href="/profile/{{$posts->author->username}}">{{'@'.$posts->author->username}}</a>
                 </div>
-                <a class="delete-button" href="#"><i class="fas fa-trash"></i></a>
+                @if (Auth::user()->username == $posts->author->username)
+                    <a class="delete-button" href="#"><i class="fas fa-trash"></i></a>
+                @endif  
             </div>
     
             <div class="detailed-post">
@@ -20,7 +22,10 @@
                 @endif
                 
                 <div class="post-reaction">
-                    <p><a href="/post/{{$posts->id}}/edit">Edit</a></p>
+                    @if (Auth::user()->username == $posts->author->username)
+                        <p><a href="/post/{{$posts->id}}/edit">Edit</a></p>
+                    @endif
+                    
                     <p><a href="/post/{{$posts->id}}/comments">{{$comment->count()}} Comment</a></p>
                     @if ($checkLike)
                          <p><a href="/post/{{$posts->id}}/unlike" class="like">{{$likes->count()}} Unlike</a></p>
