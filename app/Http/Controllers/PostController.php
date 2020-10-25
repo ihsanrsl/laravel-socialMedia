@@ -8,6 +8,7 @@ use App\Post;
 use App\Comment;
 use RealRashid\SweetAlert\Facades\Alert;
 use Illuminate\Support\Str;
+use Illuminate\Support\Facades\Auth;
 
 
 class PostController extends Controller
@@ -64,16 +65,21 @@ class PostController extends Controller
 		return view('detailedPost', compact('posts', 'comment', 'checkLike'));
 	}
 	public function edit($id) {
-		$posts = Post::find($id);
 
-        return view('editPost', compact('posts'));
+		$posts = Post::find($id);
+		if (Auth::user() != $post->user_id) {
+			return redirect()->back();
+		}
+		return view('editPost', compact('posts'));
 	}
 
 	public function update($id, Request $request) {
 		$request->validate([
 			'edit_post' => 'required',
 		]);
-
+		if (Auth::user() != $post->user_id) {
+			return redirect()->back();
+		}
 		$update = Post::where('id', $id)->update([
 			'isi' => $request['edit_post']
 		]);
@@ -82,6 +88,10 @@ class PostController extends Controller
 	}
 
 	public function deletePost($id) {
+		$post = Post::where('id', $id)->first();
+		if (Auth::user() != $post->user_id) {
+			return redirect()->back();
+		}
 		Post::destroy($id);
 
 		return redirect('/');
@@ -113,22 +123,22 @@ class PostController extends Controller
 	}
 
 	public function like($id, $likes) {
-        $store = Auth::user()->id;
+		$store = Auth::user()->id;
 
-        if($likes == 'unlike') {
-            $unliking = Like::where('user_id', Auth::user()->id)->where('post_id', $id)->first()->delete();
-           
-        } elseif ($likes == 'like') {
-            $liking = Like::updateOrCreate([
-                'user_id' => $store,
-                'post_id' => $id,
-            ]);
-        }
-        
+		if($likes == 'unlike') {
+			$unliking = Like::where('user_id', Auth::user()->id)->where('post_id', $id)->first()->delete();
 
-        return redirect('/post/'.$id);
+		} elseif ($likes == 'like') {
+			$liking = Like::updateOrCreate([
+				'user_id' => $store,
+				'post_id' => $id,
+			]);
+		}
 
-    }
+
+		return redirect('/post/'.$id);
+
+	}
 
 	public function index(){
 
