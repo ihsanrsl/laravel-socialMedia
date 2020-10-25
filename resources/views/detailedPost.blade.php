@@ -10,9 +10,15 @@
                     <h2> {{$posts->author->profile->name}} </h2>
                     <a href="/profile/{{$posts->author->username}}">{{'@'.$posts->author->username}}</a>
                 </div>
+<<<<<<< HEAD
                 @if(Auth::user() == $post->user)
                 <a class="delete-button" href="#"><i class="fas fa-trash"></i></a>
                 @endif
+=======
+                @if (Auth::user()->username == $posts->author->username)
+                    <a class="delete-button" href="#"><i class="fas fa-trash"></i></a>
+                @endif  
+>>>>>>> 8cae906c20103fdccc48be9296f331854b67dc3d
             </div>
     
             <div class="detailed-post">
@@ -22,16 +28,22 @@
                 @endif
                 
                 <div class="post-reaction">
+<<<<<<< HEAD
                     @if(Auth::user() == $post->user)
                     <p><a href="/post/{{$posts->id}}/edit">Edit</a></p>
                     @endif
+=======
+                    @if (Auth::user()->username == $posts->author->username)
+                        <p><a href="/post/{{$posts->id}}/edit">Edit</a></p>
+                    @endif
+                    
+>>>>>>> 8cae906c20103fdccc48be9296f331854b67dc3d
                     <p><a href="/post/{{$posts->id}}/comments">{{$comment->count()}} Comment</a></p>
                     @if ($checkLike)
-                         <p><a href="/post/{{$posts->id}}/unlike" class="like">210 Unlike</a></p>
+                         <p><a href="/post/{{$posts->id}}/unlike" class="like">{{$likes->count()}} Unlike</a></p>
                     @else 
-                        <p><a href="/post/{{$posts->id}}/like" class="like">210 Like</a></p>
+                        <p><a href="/post/{{$posts->id}}/like" class="like">{{$likes->count()}} Like</a></p>
                     @endif
-                    <p><a href="/" class="like">210 Like</a></p>
                     <p class="post-date">20 Oktober 2020</p>
                 </div>
             </div>

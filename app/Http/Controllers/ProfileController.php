@@ -9,6 +9,7 @@ use App\Profile;
 use App\User;
 use App\Follow;
 use App\Post;
+use App\Like;
 use Auth;
 
 class profileController extends BaseController
